@@ -1,7 +1,10 @@
 pipeline {
+    agent any
     stages {
         stage('Build') {
-            echo 'Hello Maven, Building...'
+            steps {
+                echo 'Building...'
+            }
         }
     }
 }
