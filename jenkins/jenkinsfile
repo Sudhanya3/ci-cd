@@ -17,7 +17,7 @@ pipeline {
             }
             post {
                 always {
-                    junit '*/target/*.jar'
+                    junit 'report.xml'
                 }
             }
         }
