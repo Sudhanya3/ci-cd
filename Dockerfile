@@ -1,9 +1,9 @@
-FROM maven:3.5.4-jdk-8-alpine as maven
+FROM eclipse-temurin:11-jdk-alpine as maven
 COPY ./pom.xml ./pom.xml
-COPY ./src ./src
+COPY ./App ./src
 RUN mvn dependency:go-offline -B
 RUN mvn package
-FROM openjdk:8u171-jre-alpine
+FROM openjdk:20-ea-jdk-oraclelinux7
 WORKDIR /adevguide
-COPY --from=maven target/SimpleJavaProject-*.jar ./SimpleJavaProject.jar
+COPY --from=maven target/*.jar ./SimpleJavaProject.jar
 CMD ["java", "-jar", "./SimpleJavaProject.jar"]
